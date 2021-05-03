@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookStore.Api", "BookStore.Api\BookStore.Api.csproj", "{FD6938A7-F458-4B52-B2A6-7842690FA89D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookStore.Data", "BookStore.Data\BookStore.Data.csproj", "{A7759010-237B-4B61-B7B2-F44AB306B06B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FD6938A7-F458-4B52-B2A6-7842690FA89D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD6938A7-F458-4B52-B2A6-7842690FA89D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FD6938A7-F458-4B52-B2A6-7842690FA89D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FD6938A7-F458-4B52-B2A6-7842690FA89D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A7759010-237B-4B61-B7B2-F44AB306B06B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A7759010-237B-4B61-B7B2-F44AB306B06B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A7759010-237B-4B61-B7B2-F44AB306B06B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A7759010-237B-4B61-B7B2-F44AB306B06B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
