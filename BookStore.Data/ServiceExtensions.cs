@@ -8,7 +8,7 @@ namespace BookStore.Data
 {
   public static class ServiceExtensions
   {
-    public static void AddBookStoreDataServices(this IServiceCollection services,
+    public static void AddDataServices(this IServiceCollection services,
       bool isProduction,
       IConfiguration configuration)
     {
@@ -24,6 +24,7 @@ namespace BookStore.Data
 
 
       services.AddTransient<IAuthorRepository, AuthorRepository>();
+      services.AddTransient<IBookRepository, BookRepository>();
       services.AddTransient<IUserRepository, UserRepository>();
     }
   }

@@ -1,7 +1,9 @@
 using BookStore.Api.GraphQL.Authors;
+using BookStore.Api.GraphQL.Authors.DataLoaders;
 using BookStore.Api.GraphQL.Books;
-using BookStore.Api.GraphQL.Ratings;
+using BookStore.Api.GraphQL.Books.DataLoaders;
 using BookStore.Api.GraphQL.Users;
+using BookStore.Api.GraphQL.Users.DataLoaders;
 using HotChocolate.Language;
 using Microsoft.Extensions.DependencyInjection;
 using StackExchange.Redis;
@@ -23,14 +25,17 @@ namespace BookStore.Api.GraphQL
         .AddTypeExtension<AuthorQueries>()
         .AddTypeExtension<BookQueries>()
         .AddTypeExtension<UserQueries>()
-        //.AddMutationType(d => d.Name("Mutation"))
+        .AddMutationType(d => d.Name("Mutation"))
         //.AddTypeExtension<AuthorMutations>()
-        //.AddTypeExtension<BookMutations>()
+        .AddTypeExtension<BookMutations>()
         //.AddTypeExtension<UserMutations>()
-        //.AddSubscriptionType(d => d.Name("Subscription"))
+         .AddSubscriptionType(d => d.Name("Subscription"))
         //.AddTypeExtension<AuthorSubscriptions>()
-        //.AddTypeExtension<BookSubscriptions>()
+         .AddTypeExtension<BookSubscriptions>()
         //.AddTypeExtension<UserSubscriptions>()
+        .AddDataLoader<AuthorBatchDataLoader>()
+        .AddDataLoader<BookBatchDataLoader>() 
+        .AddDataLoader<UserBatchDataLoader>()
         .AddInMemorySubscriptions()
         .AddFiltering()
         .AddSorting()

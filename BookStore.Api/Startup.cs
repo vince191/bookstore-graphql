@@ -1,4 +1,6 @@
+using BookStore.Api.Core;
 using BookStore.Api.GraphQL;
+using BookStore.Api.Services;
 using BookStore.Data;
 using BookStore.Data.Helpers;
 using Microsoft.AspNetCore.Builder;
@@ -25,7 +27,8 @@ namespace BookStore.Api
     {
       services.AddControllers();
       services.AddGraphQLService();
-      services.AddBookStoreDataServices(_environment.IsProduction(), _configuration);
+      services.AddDataServices(_environment.IsProduction(), _configuration);
+      services.AddApiServices();
       services.AddCors(options =>
       {
         options.AddPolicy("AllowAllHeaders",
@@ -36,7 +39,8 @@ namespace BookStore.Api
               .AllowAnyHeader()
               .AllowAnyMethod();
           });
-      });
+      }); 
+      services.AddAutoMapper(typeof(MappingProfile));
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
