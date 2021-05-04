@@ -24,7 +24,7 @@ namespace BookStore.Data.Repository
 
     public IQueryable<Author> GetAuthorsById(IReadOnlyList<Guid> ids)
     {
-      return _context.Authors.Where(x => x.Active);
+      return _context.Authors.Where(x => ids.Any(id => id == x.Id));
     }
   }
 }

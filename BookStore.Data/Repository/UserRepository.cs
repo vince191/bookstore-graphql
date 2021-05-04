@@ -22,7 +22,7 @@ namespace BookStore.Data.Repository
 
     public IQueryable<User> GetUsersById(IReadOnlyList<Guid> ids)
     {
-      return _context.Users.Where(x => x.Active);
+      return _context.Users.Where(x => ids.Any(id => id == x.Id));
     }
   }
 }

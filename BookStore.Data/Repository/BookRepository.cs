@@ -24,7 +24,7 @@ namespace BookStore.Data.Repository
 
     public IQueryable<Book> GetBooksById(IReadOnlyList<Guid> ids)
     {
-      return _context.Books;
+      return _context.Books.Where(x => ids.Any(id => id == x.Id));
     }
 
     public async Task<Book> SaveBookAsync(Book book)
