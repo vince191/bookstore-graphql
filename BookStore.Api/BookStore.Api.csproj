@@ -9,7 +9,10 @@
         <PackageReference Include="HotChocolate.Abstractions" Version="11.2.2" />
         <PackageReference Include="HotChocolate.AspNetCore" Version="11.2.2" />
         <PackageReference Include="HotChocolate.Data" Version="11.2.2" />
+        <PackageReference Include="HotChocolate.PersistedQueries.InMemory" Version="11.2.2" />
+        <PackageReference Include="HotChocolate.PersistedQueries.Redis" Version="11.2.2" />
         <PackageReference Include="HotChocolate.Subscriptions" Version="11.2.2" />
+        <PackageReference Include="HotChocolate.Subscriptions.Redis" Version="11.2.2" />
         <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.5" />
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.1.4" />
     </ItemGroup>
@@ -21,12 +24,8 @@
     <ItemGroup>
       <Folder Include="GraphQL\Authors\Inputs" />
       <Folder Include="GraphQL\Authors\Payloads" />
-      <Folder Include="GraphQL\Books\DataLoaders" />
       <Folder Include="GraphQL\Books\Inputs" />
       <Folder Include="GraphQL\Books\Payloads" />
-      <Folder Include="GraphQL\Ratings\DataLoaders" />
-      <Folder Include="GraphQL\Ratings\Inputs" />
-      <Folder Include="GraphQL\Ratings\Payloads" />
       <Folder Include="GraphQL\Users\Inputs" />
       <Folder Include="GraphQL\Users\Payloads" />
     </ItemGroup>

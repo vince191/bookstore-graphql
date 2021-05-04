@@ -10,8 +10,8 @@ namespace BookStore.Api.GraphQL.Users
   [ExtendObjectType(Name = "Query")]
   public class UserQueries
   {
-    public async Task<User>
-      GetAuthor(Guid id, UserBatchDataLoader dataLoader, CancellationToken cancellationToken) =>
+    public async Task<User?>
+      GetUserById(Guid id, UserBatchDataLoader dataLoader, CancellationToken cancellationToken) =>
       await dataLoader.LoadAsync(id, cancellationToken);
   }
 }

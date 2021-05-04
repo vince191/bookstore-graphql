@@ -46,8 +46,20 @@ namespace BookStore.Data.Helpers
         .FinishWith((f, u) => { Console.WriteLine($"{u.Id} - {u.Title} created."); })
         .GenerateBetween(5000, 5000);
       
+      var users = new Faker<User>()
+        .RuleFor(f => f.Id, f => f.Random.Guid())
+        .RuleFor(f => f.Email, f => f.Person.Email)
+        .RuleFor(f => f.FirstName, f => f.Person.FirstName)
+        .RuleFor(f => f.LastName, f =>  f.Person.LastName)
+        .RuleFor(f => f.DateOfBirth, f => f.Date.Between(DateTime.Now, DateTime.Now.AddMonths(-120)))
+        .RuleFor(f => f.DateCreated, f => f.Date.Between(DateTime.Now, DateTime.Now.AddMonths(8)))
+        .RuleFor(f => f.Active, f => f.Random.Bool())
+        .FinishWith((f, u) => { Console.WriteLine($"{u.Id} - {u.FirstName} {u.LastName} created."); })
+        .GenerateBetween(5000, 5000);
+      
       context.Authors.AddRange(authors);
       context.Books.AddRange(books);
+      context.Users.AddRange(users);
       context.SaveChanges();
       
       
