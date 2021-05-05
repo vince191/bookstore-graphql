@@ -17,7 +17,7 @@ namespace BookStore.Api.GraphQL.Books
     [Topic]
     public Task<Book> OnBookAddedAsync(
       [EventMessage] Guid bookId,
-      BookBatchDataLoader dataLoader,
+      BookByIdDataLoader dataLoader,
       IResolverContext context,
       CancellationToken cancellationToken) =>
       dataLoader.LoadAsync(bookId, cancellationToken);

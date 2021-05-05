@@ -11,7 +11,7 @@ namespace BookStore.Api.GraphQL.Books
   public class BookQueries
   {
     public async Task<Book?>
-      GetBookById(Guid id, BookBatchDataLoader dataLoader, CancellationToken cancellationToken) =>
+      GetBookById(Guid id, BookByIdDataLoader dataLoader, CancellationToken cancellationToken) =>
       await dataLoader.LoadAsync(id, cancellationToken);
   }
 }

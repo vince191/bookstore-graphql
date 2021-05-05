@@ -8,14 +8,14 @@ using GreenDonut;
 using HotChocolate.DataLoader;
 using Microsoft.EntityFrameworkCore;
 
-namespace BookStore.Api.GraphQL.Users.DataLoaders
+namespace BookStore.Api.GraphQL.Books.DataLoaders
 {
-  public class UserBatchDataLoader : BatchDataLoader<Guid, User>
+  public class BookByIdDataLoader : BatchDataLoader<Guid, Book>
   {
-    private readonly IUserRepository _repository;
+    private readonly IBookRepository _repository;
 
-    public UserBatchDataLoader(
-      IUserRepository repository,
+    public BookByIdDataLoader(
+      IBookRepository repository,
       IBatchScheduler batchScheduler,
       DataLoaderOptions<Guid>? options = null)
       : base(batchScheduler, options)
@@ -23,13 +23,13 @@ namespace BookStore.Api.GraphQL.Users.DataLoaders
       _repository = repository;
     }
 
-    protected override async Task<IReadOnlyDictionary<Guid, User>> LoadBatchAsync(
+    protected override async Task<IReadOnlyDictionary<Guid, Book>> LoadBatchAsync(
       IReadOnlyList<Guid> keys,
       CancellationToken cancellationToken)
     {
-      // instead of fetching one user, we fetch multiple user
-      var users = _repository.GetUsersById(keys);
-      return await users.ToDictionaryAsync(x => x.Id, cancellationToken);
+      // instead of fetching one book, we fetch multiple books
+      var books = _repository.GetBooksById(keys);
+      return await books.ToDictionaryAsync(x => x.Id, cancellationToken);
     }
   }
 }

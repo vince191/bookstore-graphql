@@ -1,4 +1,5 @@
 using BookStore.Api.Core;
+using BookStore.Api.Core.Configuration;
 using BookStore.Api.GraphQL;
 using BookStore.Api.Services;
 using BookStore.Data;
@@ -25,8 +26,10 @@ namespace BookStore.Api
     // This method gets called by the runtime. Use this method to add services to the container.
     public void ConfigureServices(IServiceCollection services)
     {
+      var redisConfiguration = _configuration.GetSection("RedisConfiguration").Get<RedisConfiguration>();
+      
       services.AddControllers();
-      services.AddGraphQLService();
+      services.AddGraphQLService(redisConfiguration);
       services.AddDataServices(_environment.IsProduction(), _configuration);
       services.AddApiServices();
       services.AddCors(options =>

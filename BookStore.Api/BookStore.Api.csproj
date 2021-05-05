@@ -23,11 +23,4 @@
       <ProjectReference Include="..\BookStore.Data\BookStore.Data.csproj" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="GraphQL\Authors\Inputs" />
-      <Folder Include="GraphQL\Authors\Payloads" />
-      <Folder Include="GraphQL\Users\Inputs" />
-      <Folder Include="GraphQL\Users\Payloads" />
-    </ItemGroup>
-
 </Project>

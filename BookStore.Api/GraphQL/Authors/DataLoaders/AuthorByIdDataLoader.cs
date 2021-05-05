@@ -10,11 +10,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BookStore.Api.GraphQL.Authors.DataLoaders
 {
-  public class AuthorBatchDataLoader : BatchDataLoader<Guid, Author>
+  public class AuthorByIdDataLoader : BatchDataLoader<Guid, Author>
   {
     private readonly IAuthorRepository _repository;
 
-    public AuthorBatchDataLoader(
+    public AuthorByIdDataLoader(
       IAuthorRepository repository,
       IBatchScheduler batchScheduler,
       DataLoaderOptions<Guid>? options = null)
