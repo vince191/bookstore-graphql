@@ -1,4 +1,7 @@
+using BookStore.Api.Core;
+using BookStore.Api.Core.Configuration;
 using BookStore.Api.GraphQL;
+using BookStore.Api.Services;
 using BookStore.Data;
 using BookStore.Data.Helpers;
 using Microsoft.AspNetCore.Builder;
@@ -23,9 +26,12 @@ namespace BookStore.Api
     // This method gets called by the runtime. Use this method to add services to the container.
     public void ConfigureServices(IServiceCollection services)
     {
+      var redisConfiguration = _configuration.GetSection("RedisConfiguration").Get<RedisConfiguration>();
+      
       services.AddControllers();
-      services.AddGraphQLService();
-      services.AddBookStoreDataServices(_environment.IsProduction(), _configuration);
+      services.AddGraphQLService(redisConfiguration);
+      services.AddDataServices(_environment.IsProduction(), _configuration);
+      services.AddApiServices();
       services.AddCors(options =>
       {
         options.AddPolicy("AllowAllHeaders",
@@ -36,7 +42,8 @@ namespace BookStore.Api
               .AllowAnyHeader()
               .AllowAnyMethod();
           });
-      });
+      }); 
+      services.AddAutoMapper(typeof(MappingProfile));
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

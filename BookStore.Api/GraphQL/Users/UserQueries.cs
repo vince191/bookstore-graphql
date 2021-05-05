@@ -11,7 +11,7 @@ namespace BookStore.Api.GraphQL.Users
   public class UserQueries
   {
     public async Task<User?>
-      GetUserById(Guid id, UserBatchDataLoader dataLoader, CancellationToken cancellationToken) =>
+      GetUserById(Guid id, UserByIdDataLoader dataLoader, CancellationToken cancellationToken) =>
       await dataLoader.LoadAsync(id, cancellationToken);
   }
 }

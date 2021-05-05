@@ -6,6 +6,8 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="AutoMapper" Version="10.1.1" />
+        <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
         <PackageReference Include="HotChocolate.Abstractions" Version="11.2.2" />
         <PackageReference Include="HotChocolate.AspNetCore" Version="11.2.2" />
         <PackageReference Include="HotChocolate.Data" Version="11.2.2" />
@@ -19,15 +21,6 @@
 
     <ItemGroup>
       <ProjectReference Include="..\BookStore.Data\BookStore.Data.csproj" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="GraphQL\Authors\Inputs" />
-      <Folder Include="GraphQL\Authors\Payloads" />
-      <Folder Include="GraphQL\Books\Inputs" />
-      <Folder Include="GraphQL\Books\Payloads" />
-      <Folder Include="GraphQL\Users\Inputs" />
-      <Folder Include="GraphQL\Users\Payloads" />
     </ItemGroup>
 
 </Project>

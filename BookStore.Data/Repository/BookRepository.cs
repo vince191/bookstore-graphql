@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using BookStore.Data.Context;
 using BookStore.Data.Models;
 
@@ -9,6 +10,7 @@ namespace BookStore.Data.Repository
   public interface IBookRepository
   {
     public IQueryable<Book> GetBooksById(IReadOnlyList<Guid> ids);
+    public Task<Book> SaveBookAsync(Book book);
   }
 
   public class BookRepository : IBookRepository
@@ -22,7 +24,15 @@ namespace BookStore.Data.Repository
 
     public IQueryable<Book> GetBooksById(IReadOnlyList<Guid> ids)
     {
-      return _context.Books.Where(x => x.Active);
+      return _context.Books.Where(x => ids.Any(id => id == x.Id));
+    }
+
+    public async Task<Book> SaveBookAsync(Book book)
+    {
+      book.DateCreated = DateTime.Now;
+      await _context.Books.AddAsync(book);
+      await _context.SaveChangesAsync();
+      return book;
     }
   }
 }
