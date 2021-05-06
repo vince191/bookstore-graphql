@@ -2,7 +2,10 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using BookStore.Api.GraphQL.Books.DataLoaders;
+using BookStore.Api.Services;
 using BookStore.Data.Models;
+using HotChocolate.Data;
+using HotChocolate.Resolvers;
 using HotChocolate.Types;
 
 namespace BookStore.Api.GraphQL.Books

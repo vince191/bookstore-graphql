@@ -1,3 +1,4 @@
+using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
 using BookStore.Api.GraphQL.Users.Inputs;
@@ -8,7 +9,8 @@ namespace BookStore.Api.Services
 {
   public interface IUserService
   {
-    Task<User> SaveAsync(AddUserInput input);
+    Task<User> SaveAsync(AddUserInput input, CancellationToken cancellationToken = default);
+    Task<User?> UpdateAsync(UpdateUserInput input, CancellationToken cancellationToken = default);
   }
 
   public class UserService : IUserService
@@ -22,10 +24,21 @@ namespace BookStore.Api.Services
       _mapper = mapper;
     }
 
-    public async Task<User> SaveAsync(AddUserInput input)
+    public async Task<User> SaveAsync(AddUserInput input, CancellationToken cancellationToken = default)
     {
       var newUser = _mapper.Map<User>(input);
-      return await _userRepository.SaveUserAsync(newUser);
+      return await _userRepository.SaveUserAsync(newUser, cancellationToken);
+    }
+    
+    public async Task<User?> UpdateAsync(UpdateUserInput input, CancellationToken cancellationToken = default)
+    {
+      var user = await _userRepository.GetUserByIdAsync(input.id, cancellationToken);
+
+      if (user == null)
+        return null;
+
+      user = _mapper.Map<User>(input);
+      return await _userRepository.UpdateUserAsync(user, cancellationToken);
     }
   }
 }

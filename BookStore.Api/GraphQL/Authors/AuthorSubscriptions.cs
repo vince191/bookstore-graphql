@@ -20,5 +20,14 @@ namespace BookStore.Api.GraphQL.Authors
       IResolverContext context,
       CancellationToken cancellationToken) =>
       dataLoader.LoadAsync(authorId, cancellationToken);
+
+    [Subscribe]
+    [Topic]
+    public Task<Author> OnAuthorUpdatedAsync(
+      [EventMessage] Guid authorId,
+      AuthorByIdDataLoader dataLoader,
+      IResolverContext context,
+      CancellationToken cancellationToken) =>
+      dataLoader.LoadAsync(authorId, cancellationToken);
   }
 }
