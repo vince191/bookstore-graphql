@@ -28,7 +28,7 @@ namespace BookStore.Api.GraphQL.Books.DataLoaders
       CancellationToken cancellationToken)
     {
       // instead of fetching one book, we fetch multiple books
-      var books = _repository.GetBooksById(keys);
+      var books = _repository.GetBooksByIdAsync(keys);
       return await books.ToDictionaryAsync(x => x.Id, cancellationToken);
     }
   }

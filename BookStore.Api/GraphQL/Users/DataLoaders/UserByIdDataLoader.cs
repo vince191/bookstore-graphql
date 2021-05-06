@@ -28,7 +28,7 @@ namespace BookStore.Api.GraphQL.Users.DataLoaders
       CancellationToken cancellationToken)
     {
       // instead of fetching one user, we fetch multiple user
-      var users = _repository.GetUsersById(keys);
+      var users = _repository.GetUsersByIdAsync(keys);
       return await users.ToDictionaryAsync(x => x.Id, cancellationToken);
     }
   }

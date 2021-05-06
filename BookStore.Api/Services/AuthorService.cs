@@ -1,3 +1,4 @@
+using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
 using BookStore.Api.GraphQL.Authors.Inputs;
@@ -9,7 +10,8 @@ namespace BookStore.Api.Services
 {
   public interface IAuthorService
   {
-    Task<Author> SaveAsync(AddAuthorInput input);
+    Task<Author> SaveAsync(AddAuthorInput input, CancellationToken cancellationToken = default);
+    Task<Author?> UpdateAsync(UpdateAuthorInput input, CancellationToken cancellationToken = default);
   }
 
   public class AuthorService : IAuthorService
@@ -22,11 +24,22 @@ namespace BookStore.Api.Services
       _authorRepository = authorRepository;
       _mapper = mapper;
     }
- 
-    public async Task<Author> SaveAsync(AddAuthorInput input)
+
+    public async Task<Author> SaveAsync(AddAuthorInput input, CancellationToken cancellationToken = default)
     {
       var newAuthor = _mapper.Map<Author>(input);
-      return await _authorRepository.SaveAuthorAsync(newAuthor);
+      return await _authorRepository.SaveAuthorAsync(newAuthor, cancellationToken);
+    }
+
+    public async Task<Author?> UpdateAsync(UpdateAuthorInput input, CancellationToken cancellationToken = default)
+    {
+      var author = await _authorRepository.GetAuthorByIdAsync(input.id, cancellationToken);
+
+      if (author == null)
+        return null;
+
+      author = _mapper.Map<Author>(input);
+      return await _authorRepository.UpdateAuthorAsync(author, cancellationToken);
     }
   }
 }
