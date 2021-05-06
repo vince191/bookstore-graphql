@@ -30,7 +30,7 @@ namespace BookStore.Api.GraphQL.Authors
       return new AddAuthorPayload(savedAuthor);
     }
     
-    public async Task<UpdateAuthorPayload> UpdateBookAsync(
+    public async Task<UpdateAuthorPayload> UpdateAuthorAsync(
       [Service] IAuthorService authorService,
       [Service] ITopicEventSender eventSender,
       UpdateAuthorInput input,
