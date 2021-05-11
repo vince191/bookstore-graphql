@@ -1,3 +1,4 @@
+[![.NET](https://github.com/vince191/bookstore-graphql/actions/workflows/dotnet.yml/badge.svg?branch=main)](https://github.com/vince191/bookstore-graphql/actions/workflows/dotnet.yml)
 # Bookstore GraphQL
 
 This project is a GraphQL server for a bookstore.
